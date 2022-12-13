@@ -1,20 +1,17 @@
 # day 4
 
+def get_range(section):
+    s = section.split("-")
+    s1 = int(s[0])
+    s2 = int(s[1])
+    return range(s1, s2+1)
+
 def count_overlapped(sections_str):
     sections = sections_str.strip().split(",")
-
-    s1 = sections[0].split("-")
-    s11 = int(s1[0])
-    s12 = int(s1[1])
-    s1_str_t = ".".join([str(i) for i in range(s11, s12+1)])
+    s1_str_t = ".".join([str(i) for i in get_range(sections[0])])
     s1_str = f".{s1_str_t}."
-
-    s2 = sections[1].split("-")
-    s21 = int(s2[0])
-    s22 = int(s2[1])
-    s2_str_t = ".".join([str(i) for i in range(s21, s22+1)])
+    s2_str_t = ".".join([str(i) for i in get_range(sections[1])])
     s2_str = f".{s2_str_t}."
-
     if s1_str in s2_str or s2_str in s1_str:
         return 1
     else:
@@ -22,17 +19,8 @@ def count_overlapped(sections_str):
 
 def count_alloverlapped(sections_str):
     sections = sections_str.strip().split(",")
-
-    s1 = sections[0].split("-")
-    s11 = int(s1[0])
-    s12 = int(s1[1])
-    range1 = range(s11, s12+1)
-
-    s2 = sections[1].split("-")
-    s21 = int(s2[0])
-    s22 = int(s2[1])
-    range2 = range(s21, s22+1)
-
+    range1 = get_range(sections[0])
+    range2 = get_range(sections[1])
     for s in range1:
         if s in range2:
             return 1
