@@ -9,11 +9,13 @@ defeatMap = {"X": "C",
              "Y": "A",
              "Z": "B"}
 
-def evaluateScore(letters):
+def assignInput(letters):
     letters = letters.strip()
     choices = letters.split(" ")
-    myChoice = choices[1]
-    oponentsCh = choices[0]
+    return (choices[0], choices[1])
+
+def evaluateScore(letters):
+    oponentsCh, myChoice = assignInput(letters) 
     score = me.index(myChoice) + 1
     if defeatMap[myChoice] == oponentsCh:
         # won
@@ -34,3 +36,18 @@ with open("../input.txt", "r") as file:
 score = sum(list(map(evaluateScore, lines)))
 print(f"my score: {score}")
 
+# part 2
+# x means lose, y means draw, z means win
+
+def evaluateSecretChoices(letters):
+    oponentsCh, myChoice = assignInput(letters)
+    winCh = [k for k, v in defeatMap.items() if v == oponentsCh][0]
+    drawChIdx = oponent.index(oponentsCh)
+    options = {"X" : [k for k in me if k != winCh and me.index(k) != drawChIdx][0],
+               "Y" : me[oponent.index(oponentsCh)],
+               "Z" : winCh}
+    return f"{oponentsCh} {options[myChoice]}"
+
+secretGameLines = list(map(evaluateSecretChoices, lines))
+secretScore = sum(list(map(evaluateScore, secretGameLines)))
+print(f"my secret score: {secretScore}")
