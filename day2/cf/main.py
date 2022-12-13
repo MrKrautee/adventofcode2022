@@ -48,6 +48,6 @@ def evaluateSecretChoices(letters):
                "Z" : winCh}
     return f"{oponentsCh} {options[myChoice]}"
 
-secretGameLines = list(map(evaluateSecretChoices, lines))
+secretGameLines = map(evaluateSecretChoices, lines)
 secretScore = sum(list(map(evaluateScore, secretGameLines)))
 print(f"my secret score: {secretScore}")
