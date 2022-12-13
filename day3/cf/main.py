@@ -21,3 +21,13 @@ with open("../input.txt", "r") as file:
 
 prio_sum = sum(list(map(check_rucksack, lines)))
 print(f"prio sum: {prio_sum}")
+
+# part 2
+def check_groups(group):
+    for letter in group[0]:
+        if letter in group[1] and letter in group[2]:
+            return prio(letter)
+
+groups = [lines[x:x+3] for x in range(0, len(lines), 3)]
+group_prio_sum = sum(list(map(check_groups, groups)))
+print(f"group prio sum: {group_prio_sum}")
