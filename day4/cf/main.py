@@ -20,8 +20,29 @@ def count_overlapped(sections_str):
     else:
         return 0
 
+def count_alloverlapped(sections_str):
+    sections = sections_str.strip().split(",")
+
+    s1 = sections[0].split("-")
+    s11 = int(s1[0])
+    s12 = int(s1[1])
+    range1 = range(s11, s12+1)
+
+    s2 = sections[1].split("-")
+    s21 = int(s2[0])
+    s22 = int(s2[1])
+    range2 = range(s21, s22+1)
+
+    for s in range1:
+        if s in range2:
+            return 1
+    return 0
+
 with open("../input.txt", "r") as file:
     lines = file.readlines()
 
 overlap_sum = sum(list(map(count_overlapped, lines)))
 print(f"overlapped sections {overlap_sum}")
+
+overlapall_sum = sum(list(map(count_alloverlapped, lines)))
+print(f"all overlapped sections {overlapall_sum}")
