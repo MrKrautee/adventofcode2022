@@ -17,7 +17,7 @@ def func():
 
         key = max(elveCalDict, key=elveCalDict.get)
         max_cal = elveCalDict[key]
-        print(max_cal)
+        print("Elve carrying most calories:",key,"\nCarrying {} calories.".format(max_cal))
 
 if __name__ == "__main__":
 
